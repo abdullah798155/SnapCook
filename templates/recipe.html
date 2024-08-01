@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe</title>
+    <!-- Link to Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- Link to your custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
+
+    <style>
+        /* Custom CSS for card styling */
+        .card {
+            max-width: 600px; /* Adjust the max-width as needed */
+            margin: 0 auto 20px; /* Center the card horizontally and add bottom margin */
+            /* background-color: rgba(255, 255, 255, 0.3); Add translucency */
+            box-shadow: 0 14px 20px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+        }
+    </style>
+</head>
+
+<body class="bg-gray-200">
+
+    <!-- Navbar -->
+    <nav class="bg-purple-700 text-white py-4">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <h1 class="text-2xl font-bold">RECIPE SECTION</h1>
+            <!-- You can add navigation links here if needed -->
+            <button class="py-2 px-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                <a href="/" class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-white-700 md:p-0 dark:text-white" aria-current="page">Home</a>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Content Area -->
+    <div class="container mx-auto mt-10">
+
+        <!-- Generated Recipe Card -->
+        <div class="card bg-yellow-50 rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-4 text-purple-800">Generated Recipe</h1>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="hardcode(`${{ recipe}}`)">Read Recipe</button>
+            <p class="text-lg text-gray-800">{{ recipe }}</p>
+        </div>
+
+        <!-- Hindi Translation Card -->
+        <div class="card bg-green-50 rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-4 text-purple-800">Translation: Hindi</h1>
+            <p class="text-lg text-gray-800">{{ tr_h }}</p>
+        </div>
+
+        <!-- Telugu Translation Card -->
+        <div class="card bg-blue-50 rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-4 text-purple-800">Translation: Telugu</h1>
+            <p class="text-lg text-gray-800">{{ tr_tel }}</p>
+        </div>
+
+        <div class="card bg-blue-50 rounded-lg shadow-md p-6">
+            <h1 class="text-3xl font-bold mb-4 text-purple-800">Similar videos</h1>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onclick="genlink(`${{ links}}`)">Generate similar links</button>
+            <div id="links-container" class="text-lg text-gray-800"></div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-teal-800 text-white py-4 mt-10">
+        <div class="container mx-auto text-center">
+            <p>Recipe gen</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <script>
+        function speakText(text) {
+            var synth = window.speechSynthesis;
+            var utterance = new SpeechSynthesisUtterance(text);
+
+            // Optionally configure the utterance here (voice, rate, pitch, etc.)
+
+            // Speak the text
+            synth.speak(utterance);
+        }
+
+        function hardcode(text) {
+            alert("hardcode called !!!!!!!!!!!");
+            let actString = "";
+            actString = text;
+            speakText(actString);
+        }
+    </script>
+    <script>
+        function genlink(links) {
+            // console.log(links,"links here",typeof(links));
+            let regex = /https:\/\/www\.youtube\.com\/watch\?v=[\w-]+/g;
+
+            // Array to store extracted links
+            let linksarr = [];
+
+            // Use match method with regex to find all matches in the string
+            let match;
+            while ((match = regex.exec(links)) !== null) {
+                linksarr.push(match[0]); // Push the matched URL to the array
+            }
+
+            console.log(linksarr);
+
+            const linksContainer = document.getElementById('links-container');
+
+            linksarr.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link;
+                a.target = "_blank";
+                a.className = "block mb-2 text-blue-500 hover:underline";
+                a.textContent = link;
+                linksContainer.appendChild(a);
+            });
+
+        }
+    </script>
+</body>
+
+</html>

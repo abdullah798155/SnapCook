@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snapcook</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
+</head>
+
+<body class="bg-white">
+    <nav class="bg-blue-500 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+        <div class="container flex flex-wrap justify-between items-center mx-auto">
+            <a href="/" class="flex items-center">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 14 14'%3E%3Cpath fill='%23000' fill-rule='evenodd' d='M9.75.75A.75.75 0 0 1 10.5 0h1.75C13.216 0 14 .784 14 1.75V3.5a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25H10.5a.75.75 0 0 1-.75-.75M0 7a.75.75 0 0 1 .75-.75h12.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 7m1.5-5.25a.25.25 0 0 1 .25-.25H3.5a.75.75 0 0 0 0-1.5H1.75A1.75 1.75 0 0 0 0 1.75V3.5a.75.75 0 0 0 1.5 0zm11.75 8a.75.75 0 0 1 .75.75v1.75A1.75 1.75 0 0 1 12.25 14H10.5a.75.75 0 0 1 0-1.5h1.75a.25.25 0 0 0 .25-.25V10.5a.75.75 0 0 1 .75-.75M1.5 10.5a.75.75 0 0 0-1.5 0v1.75C0 13.216.784 14 1.75 14H3.5a.75.75 0 0 0 0-1.5H1.75a.25.25 0 0 1-.25-.25z' clip-rule='evenodd'/%3E%3C/svg%3E"" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo">
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Ingredient Detector</span>
+            </a>
+            <div class="flex md:order-2">
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Get
+                    started</button>
+                <button data-collapse-toggle="navbar-cta" type="button"
+                    class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                    aria-controls="navbar-cta" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+            <div class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1" id="navbar-cta">
+                <ul
+                    class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 bg-blue-500">
+                    <li>
+                        <a href="/"
+                            class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+                            aria-current="page">Home</a>
+                    </li>
+                    <li>
+                        <a href="/"
+                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Clear</a>
+                    </li>
+                    <li>
+                        <a href="/about"
+                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About us</a>
+                    </li>
+                    <li>
+                        <a href="/about"
+                            class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <style>
+        @keyframes custom-pop {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+        .custom-pop {
+            animation: custom-pop 2s ease-in-out infinite;
+        }
+        
+        .image-container {
+            position: relative;
+            right: -200px; /* Move image 200px away from the right side of the screen */
+        }
+        
+        @media (max-width: 1024px) {
+            .image-container {
+                position: static; /* Reset position for smaller screens */
+                right: 0;
+            }
+        }
+    
+        .custom-section {
+            margin-top: 3rem; /* Space below the navbar */
+            margin-left: 3rem; /* Space on the left side */
+            margin-right: 3rem; /* Space on the right side */
+            margin-bottom: 3rem; /* Space below the section */
+            padding: 1.5rem; /* Adjust padding */
+            border-radius: 20px; /* Add rounded corners */
+        }
+    </style>
+            
+    <section class="bg-blue-200 dark:bg-gray-900 custom-section">
+        <div class="flex flex-col lg:flex-row py-1 px-4 mx-auto max-w-screen-xl sm:py-1 lg:px-6"> <!-- Reduced height -->
+            <div class="flex-1">
+                <div class="max-w-screen-md">
+                    <h2 class="mb-4 text-3xl lg:text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Generate amazing recipes!</h2> <!-- Adjusted text size -->
+                    <p class="mb-6 lg:mb-8 font-light text-gray-500 sm:text-lg dark:text-gray-400">Ingredient detector helps you upload images and suggest you wonderful recipes with steps and instructions.</p> <!-- Adjusted text size -->
+                </div>
+            </div>
+            <div class="flex-1 flex justify-center items-center lg:ml-6">
+                <img src="https://cdn.iconscout.com/icon/free/png-256/free-ingredients-6215861-5076113.png" alt="Sample Image" class="w-full h-auto max-w-xs custom-pop image-container">
+            </div>
+        </div>
+    </section>
+    
+        
+        
+    
+    
+    <div class="flex justify-center mt-5 ">
+        <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md bg-purple-100">
+            <form action="/upload" method="post" enctype="multipart/form-data">
+                <div class="flex items-center space-x-4">
+                    <div class="relative w-full">
+                        <input type="file" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" id="inputGroupFile02" name="file" onchange="updateFileName()">
+                        <label class="absolute top-0 left-0 px-3 py-2 text-white pointer-events-none bg-blue-600 border border-transparent rounded-lg" for="inputGroupFile02">Choose file</label>
+                    </div>
+                    <button class="py-2 px-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50" type="submit">Upload</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h1 style="text-align: center; margin-top: 10px;">OR</h1>
+    <div class="flex justify-center mt-5">
+        <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md bg-purple-100">
+            <form action="/set_ingredients" method="post">
+                <div class="flex flex-col space-y-4">
+                    <div class="relative w-full">
+                        <label for="ingredients" class="block mb-2 text-sm font-medium text-gray-700">Enter Ingredients:</label>
+                        <input type="text" id="ingredients" name="ingredients" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent py-2 px-4" placeholder="e.g., tomatoes, onions, garlic">
+                    </div>
+                    <button class="py-2 px-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50" type="submit">Submit Ingredients</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  <!-- HTML -->
+  
+  
+  
+  
+  {% block result %}
+  
+  {% endblock result %}
+  
+  <div class="flex justify-center mt-10">
+    <form action="/recipe" method="post">
+        <button class="py-2 px-4 text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50" type="submit" onclick="alert('Alert recipe is being generated..\n This may take a while! ')">Generate Recipe</button>
+    </form>
+</div>
+
+
+
+<footer class="bg-gray-900 text-white py-12 mt-12"> <!-- Added mt-12 for margin-top -->
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="mb-8 md:mb-0">
+                <h2 class="text-xl font-semibold mb-4">About Us</h2>
+                <p class="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque scelerisque urna et ex malesuada, vel fermentum velit fermentum.</p>
+            </div>
+            <div class="mb-8 md:mb-0">
+                <h2 class="text-xl font-semibold mb-4">Quick Links</h2>
+                <ul class="text-sm">
+                    <li><a href="#" class="hover:text-blue-500">Home</a></li>
+                    <li><a href="#" class="hover:text-blue-500">Services</a></li>
+                    <li><a href="#" class="hover:text-blue-500">About</a></li>
+                    <li><a href="#" class="hover:text-blue-500">Contact</a></li>
+                </ul>
+            </div>
+            <div class="mb-8 md:mb-0">
+                <h2 class="text-xl font-semibold mb-4">Services</h2>
+                <ul class="text-sm">
+                    <li><a href="#" class="hover:text-blue-500">Web Design</a></li>
+                    <li><a href="#" class="hover:text-blue-500">Graphic Design</a></li>
+                    <li><a href="#" class="hover:text-blue-500">Digital Marketing</a></li>
+                    <li><a href="#" class="hover:text-blue-500">SEO Optimization</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-xl font-semibold mb-4">Contact Us</h2>
+                <p class="text-sm">123 Street Name, City, Country</p>
+                <p class="text-sm">contact@example.com</p>
+                <p class="text-sm">+123 456 7890</p>
+            </div>
+        </div>
+    </div>
+    <div class="mt-8 border-t border-gray-800 pt-8 text-center">
+        <p class="text-sm">© 2024 Your Company. All rights reserved.</p>
+    </div>
+</footer>
+
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script> -->
+    <script>
+        function updateFileName() {
+            var input = document.getElementById('inputGroupFile02');
+            var label = input.nextElementSibling;
+            var fileName = input.files[0].name;
+            label.innerHTML = fileName;
+        }
+    </script>
+
+</body>
+
+</html>
