@@ -49,3 +49,59 @@ This application leverages machine learning for image recognition and recipe gen
    ```bash
    YOUTUBE_API_KEY = 'insert your key here'
 
+
+**USAGE**
+```bash
+python main.py
+```
+Open your browser and go to http://127.0.0.1:5000/.
+
+- Upload an image of an ingredient and view the predicted class.
+
+- Click on "Generate Recipe" to create a recipe based on the predicted ingredients.
+
+- This project implements a machine learning model for ingredient classification using MobileNetV2 and provides a Flask application for image uploads and recipe generation based on the classified ingredients.
+
+## Model Training
+
+The model training process is detailed in the `model.ipynb` file. Below are the steps involved in building and training the model:
+
+### 1. Data Preparation
+- Images are organized in a directory structure with subdirectories for each ingredient class.
+- The dataset includes training, validation, and test sets.
+
+### 2. Image Processing
+- Images are preprocessed using TensorFlow's `ImageDataGenerator`, which performs data augmentation to improve model generalization.
+
+### 3. Model Architecture
+- The application utilizes **MobileNetV2** as the backbone for feature extraction.
+- MobileNetV2 is a lightweight CNN architecture designed for mobile and edge devices, focusing on efficiency and speed.
+- The model architecture consists of:
+  - Two dense layers with ReLU activation.
+  - An output layer with softmax activation for multi-class classification.
+
+### 4. Training
+- The model is trained using categorical cross-entropy loss and the Adam optimizer.
+- Early stopping is employed to prevent overfitting.
+
+### 5. Model Saving
+- After training, the model is saved as `model.h5` for later use in the Flask application.
+
+### Model Architecture Code
+```python
+import tensorflow as tf
+
+pretrained_model = tf.keras.applications.MobileNetV2(
+    input_shape=(224, 224, 3),
+    include_top=False,
+    weights='imagenet',
+    pooling='avg'
+)
+pretrained_model.trainable = False
+
+inputs = pretrained_model.input
+x = tf.keras.layers.Dense(128, activation='relu')(pretrained_model.output)
+x = tf.keras.layers.Dense(128, activation='relu')(x)
+outputs = tf.keras.layers.Dense(36, activation='softmax')(x)
+
+model = tf.keras.Model(inputs=inputs, outputs=outputs)
