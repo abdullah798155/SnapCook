@@ -37,3 +37,15 @@ This application leverages machine learning for image recognition and recipe gen
    ```bash
    git clone https://github.com/yourusername/repository.git
    cd repository
+2. Create a virtual environment and activate it:
+   ```bash
+    python -m venv venv
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+3. Install the required packages:
+   ```bash
+   pip install -r requirements.txt
+
+5. Set your YouTube API key in the main.py file:
+   ```bash
+   YOUTUBE_API_KEY = 'insert your key here'
+
