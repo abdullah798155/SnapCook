@@ -105,3 +105,26 @@ x = tf.keras.layers.Dense(128, activation='relu')(x)
 outputs = tf.keras.layers.Dense(36, activation='softmax')(x)
 
 model = tf.keras.Model(inputs=inputs, outputs=outputs)
+
+```
+**Directory**
+/repository
+│
+├── /uploads                # Folder for uploaded images
+├── /templates              # HTML templates for Flask
+├── /static                 # Static files (CSS, JS, images)
+│
+├── main.py                 # Main Flask application
+├── model.ipynb             # Jupyter notebook for training the model
+├── model.h5                # Saved Keras model
+├── requirements.txt        # Python packages required
+└── README.md               # Project documentation
+
+
+## API Endpoints
+
+- **GET /**: Render the home page.
+- **POST /upload**: Handle image upload and return prediction.
+- **POST /recipe**: Generate a recipe based on ingredients.
+- **POST /set_ingredients**: Set ingredients for recipe generation.
+- **GET /about**: Render the about page.
